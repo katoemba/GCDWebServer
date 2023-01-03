@@ -280,7 +280,7 @@ NSString* GCDWebServerGetPrimaryIPAddress(BOOL useIPv6) {
   struct ifaddrs* list;
   if (getifaddrs(&list) >= 0) {
     for (struct ifaddrs* ifap = list; ifap; ifap = ifap->ifa_next) {
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_TV
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_TV || TARGET_OS_MACCATALYST
       // Assume en0 is Ethernet and en1 is WiFi since there is no way to use SystemConfiguration framework in iOS Simulator
       // Assumption holds for Apple TV running tvOS
       if (strcmp(ifap->ifa_name, "en0") && strcmp(ifap->ifa_name, "en1"))
